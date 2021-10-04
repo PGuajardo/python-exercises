@@ -51,23 +51,25 @@ password = 'notastrongpassword'
 #the password must be at least 5 characters
 
 just_right = len(password) >= 5
-
+just_right
 #the username must be no more than 20 characters
 
 not_too_long = len(username) <= 20
-
+not_too_long
 #the password must not be the same as the username
 
 unique_pass = password != username
-
+unique_pass
 
 
 all_of_it_is_correct = just_right and not_too_long and unique_pass
+all_of_it_is_correct
 #bonus neither the username or password can start or end with whitespace
 
 not_itself = username.strip() != username
 not_password = password.strip() != password
 
 no_white = not_itself or not_password
+no_white
 
 # username.strip() and password.strip()
