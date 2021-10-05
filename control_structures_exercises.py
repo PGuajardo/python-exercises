@@ -83,20 +83,27 @@ Create a while loop that starts at 2, and displays the number squared on each li
  256
  65536
  """
+ #1a
 i = 0
 while i in range(100):
     i = i + 2
     print(i)
-
+#2a
 i = 100
 while i > -15:
     print(i)
     i = i - 5
-
+#3a
 i = 2
 while i < 1000000:
     print(i)
     i = i*i
+#4a
+i = 100
+
+while i > 0:
+    print(i)
+    i = i-5
 
  """"
 Write a loop that uses print to create the output shown below.
@@ -251,7 +258,7 @@ Write a program that prompts the user for a positive integer. Next write a loop 
 """
 user_positive_number = input("Please input a even number: ")
 
-while user_positive_number.isdigit() != True or int(user_positive_number) < 0:
+while user_positive_number.isdigit() != True or int(user_positive_number) <= 0:
     print("This is not a positive number!")
     user_positive_number = input("Please input a even number: ")
 
@@ -264,7 +271,7 @@ for i in range(user_positive_number+1):
 
 user_positive_number2 = input("Enter a positive number: ")
 
-while user_positive_number2.isdigit() != True or int(user_positive_number2) < 0:
+while user_positive_number2.isdigit() != True or int(user_positive_number2) <= 0:
     print("This is not a positive number!")
     user_positive_number2 = input("Please input a even number: ")
 
@@ -289,13 +296,13 @@ For numbers which are multiples of both three and five print "FizzBuzz".
 
 """
 
-for i in range(1,100):
+for i in range(1,101):
     if i % 5 == 0 and i % 3 == 0:
-        print(f"Fizz Buzz {i}")
+        print("Fizz Buzz")
     elif i % 5 == 0:
-        print(f"Buzz {i}")
+        print("Buzz")
     elif i % 3 == 0:
-        print(f"Fizz {i}")
+        print("Fizz")
     else:
         print(i)
     
@@ -326,6 +333,9 @@ number | squared | cubed
 """
 table_power_input = input("What number would you like ot go up to? ")
 
+while table_power_input.isdigit() != True:
+            print("Not a valid grade number!\n")
+            table_power_input = input("Enter your number: ")
 
 table_power_input = int(table_power_input)
 consent = "y"
@@ -337,14 +347,21 @@ while consent != "n":
     print(" -----     ------    -----")
 
     for i in range(1, table_power_input+1):
-        squared = i * i
-        cubed = i*i*i
-        print(f"{i}       |{squared}        |{cubed} ")
+        print("{:<3d}     |{:<3d}      |{:<3d}".format(i,i**2,i**3))
 
     consent = input("Want to try again? y/n: ")
+
+    while consent != 'n' and consent !='y':
+        print("Invalid consent number!\n")
+        consent = input("Would you like to continue ? y/n ")
     
     if consent == "y":
         table_power_input = input("What number would you like ot go up to? ")
+
+        while table_power_input.isdigit() != True:
+            print("Not a valid grade number!\n")
+            table_power_input = input("Enter your number: ")
+
         table_power_input = int(table_power_input)
 
 
@@ -371,29 +388,59 @@ F : 59 - 0
 
 """
 grades_inputed_to_letter = input("Enter your grade: ")
+
+while grades_inputed_to_letter.isdigit() != True or int(grades_inputed_to_letter) > 100 or int(grades_inputed_to_letter) < 0:
+    print("Not a valid grade number!\n")
+    grades_inputed_to_letter = input("Enter your grade: ")
+    
 grades_inputed_to_letter = int(grades_inputed_to_letter)
 
-consent = "y"
 
-while (grades_inputed_to_letter > 100 or grades_inputed_to_letter < 0) and consent != "n":
-    if grades_inputed_to_letter > 87:
+consent = "y"
+    
+while  consent != "n":
+    if grades_inputed_to_letter > 97:
+        print("A+")
+    elif grades_inputed_to_letter > 93:
         print("A")
-    elif grades_inputed_to_letter > 79:
+    elif grades_inputed_to_letter > 87:
+        print("A-")
+    elif grades_inputed_to_letter > 85:
+        print("B+")
+    elif grades_inputed_to_letter > 83:
         print("B")
-    elif grades_inputed_to_letter > 66:
+    elif grades_inputed_to_letter > 79:
+        print("B-")
+    elif grades_inputed_to_letter > 75:
+        print("C+")
+    elif grades_inputed_to_letter > 70:
         print("C")
-    elif grades_inputed_to_letter > 59:
+    elif grades_inputed_to_letter > 66:
+        print("C-")
+    elif grades_inputed_to_letter > 63:
+        print("D+")
+    elif grades_inputed_to_letter > 60:
         print("D")
+    elif grades_inputed_to_letter > 59:
+        print("D-")
     else:
         print("F")
+    
 
     consent = input("Would you like to continue ? y/n ")
+    
+    while consent != 'n' and consent !='y':
+        print("Invalid consent letter!\n")
+        consent = input("Would you like to continue ? y/n ")
 
     if consent == "y":
         grades_inputed_to_letter = input("Enter your grade: ")
+        
+        while grades_inputed_to_letter.isdigit() != True or int(grades_inputed_to_letter) > 100 or int(grades_inputed_to_letter) < 0:
+            print("Not a valid grade number!\n")
+            grades_inputed_to_letter = input("Enter your grade: ")
+            
         grades_inputed_to_letter = int(grades_inputed_to_letter)
-
-
 
 
 
@@ -421,7 +468,7 @@ input_genre = input("Enter a genre: ")
 
 for i in books:
     if input_genre == i['genre']:
-        print(i)
+        print(i['title'])
 
 #genre_entry = input("Enter a genre: ")
 
