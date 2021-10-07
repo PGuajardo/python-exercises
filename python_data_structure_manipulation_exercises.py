@@ -122,6 +122,7 @@ students = [
 # 1. How many students are there?
 print(len(students))
 # 2. How many students prefer light coffee? For each type of coffee roast?
+
 # 3. How many types of each pet are there?
 # 4. How many grades does each student have? Do they all have the same number of grades?
 # 5. What is each student's grade average?
