@@ -60,12 +60,11 @@ calculate_tip(.25, 40)
 
 # 6. Define a function named apply_discount. It should accept a original price, and a discount percentage, and return the price after the discount is applied.
 
-def apply_discount(x,y):
-    discount_perc = (y/100)
-    discount = x * discount_perc
-    return discount
+def apply_discount(total_price,discount_perc):
+    discount_price = total_price * (discount_perc/100)
+    return discount_price
 
-apply_discount(50,25)
+apply_discount(80,25)
 
 
 # 7. Define a function named handle_commas. It should accept a string that is a number that contains commas in it as input, and return a number as output.
@@ -121,24 +120,17 @@ remove_vowels("moo")
 #First Name will become first_name
 #% Completed will become completed
 
-def normalize_name(x):
-
-    non_python_identifiers = set('.!@#$%^&*()?><+=')
-
-    for j in non_python_identifiers:
-        x = x.replace(j, "")
-    
+def normalize_name(x):    
+    x = x.lower().strip('.!@#$%^&*()?><+=')
     x = x.strip()
-    x = x.lower()
-    
-    for i in x:
-        if i == " ":
-            x = x.replace(i,"_")
+    x = x.replace(" ","_")
     return x
+
 
 print(normalize_name("Paige"))
 print(normalize_name("Paige Guajardo"))
 print(normalize_name("#$! Paige"))
+print(normalize_name("$%$#@!!@ Paige Josiah Guajardo $$$#%#@"))
     
 
 # 11. Write a function named cumulative_sum that accepts a list of numbers and returns a list that is the cumulative sum of the numbers in the list.
@@ -159,3 +151,71 @@ def cumulative_sum(x):
 cumulative_sum([1,2,3])
 cumulative_sum([1,2,3,4])
 
+#--------------------
+# Bonus twelveto24
+#--------------------
+
+def twelveto24(s):
+    if s[-2:] == "am":
+        if s[:2] == "12":
+            a = str(s[:5] + ":00" + s[-2:])
+        else:
+            a = str(s[:4] + ":00" + s[-2:])
+    else:
+        if s[:2] == "12":
+            pm = str(int(s[:2]) + 12)
+            a = str(pm + s[2:5] + ":00" + s[-2:])
+        else:
+            pm = str(int(s[:1]) + 12)
+            a = str(pm + s[1:4] + ":00" + s[-2:])
+    return a
+
+print(twelveto24("7:45am"))
+print(twelveto24("12:30am"))
+print(twelveto24("6:30pm"))
+print(twelveto24("12:30pm"))
+
+
+#--------------------
+# Bonus Col_Index
+#--------------------
+
+def col_index(x):
+    
+    list_letter = []
+    
+    all_the_previous_letters = []
+    x = x.lower()
+    
+    for i in x:
+        if len(x) > 1:
+            
+            
+            all_the_previous_letters = x[:-1]
+            
+            for k in all_the_previous_letters:
+                letter = (ord(k) - 96) * 26
+                list_letter.append(letter)
+                
+                
+                
+            last_letter = int(ord(x[-1:]) - 96)
+            list_letter.append(last_letter)
+            
+            #first_letter = int((ord(x[0]) - 96) * 26)
+            #list_letter.append(first_letter)
+            
+            #numbers = ord(i) - 96
+            #list_letter.append(numbers)
+            return sum(list_letter)
+            
+        else:
+            number = ord(i) - 96
+            list_letter.append(number)
+            return sum(list_letter)
+
+
+print(col_index("A"))
+print(col_index("B"))
+print(col_index("AA"))
+print(col_index("FZ"))
