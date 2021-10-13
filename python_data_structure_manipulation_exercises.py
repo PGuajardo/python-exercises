@@ -123,13 +123,171 @@ students = [
 print(len(students))
 # 2. How many students prefer light coffee? For each type of coffee roast?
 
+search_light = "light"
+search_medium = "medium"
+search_darl = "dark"
+coffee_people = []
+for i in students:
+    coffee_people.append(i["coffee_preference"])
+    
+print(coffee_people)
+
+count1 = 0
+for i in coffee_people:
+    if i == search_light:
+        count1 += 1
+        
+count2 = 0
+for i in coffee_people:
+    if i == search_medium:
+        count2 += 1
+        
+count3 = 0
+for i in coffee_people:
+    if i == search_darl:
+        count3 += 1
+        
+print("\nPeople who prefer light: ", count1)
+print("\nPeople who prefer medium: ", count2)
+print("\nPeople who prefer dark: ", count3)
+
 # 3. How many types of each pet are there?
+
+animal_keepers = [ i["pets"] for i in students if i["pets"] != [] ]
+
+#for i in students:
+#    if i["pets"] != []:
+#        animal_keepers.append(i["pets"])
+
+
+print(animal_keepers)
+print("\nThere are this many pets: ",len(animal_keepers))
+print("\n",animal_keepers[0][0])
+
+#print(type(animal_keepers[0]))
+
+count = 0
+good_boy = "dog"
+# For every element in the list animal_keepers
+for animal in animal_keepers:
+    #For every element in animals
+    for i in animal:
+        #Access the first item in the list which is a dictionary, so we access the key "species" for that value to equal
+        # good_boy which is a "dog"
+        if animal[0]["species"] == good_boy:
+            #add to the counter if true
+            count += 1     
+print("\nThere this many people with dogs: ",count)
+
+
 # 4. How many grades does each student have? Do they all have the same number of grades?
+
+list_of_grades = [grades["grades"] for grades in students]
+
+    
+print(list_of_grades)
+
+print("\nThere are this many grades per student: ",len(list_of_grades[0]))
+print("\nThey are not the same!")
+
 # 5. What is each student's grade average?
+
+from statistics import mean
+#list_of_grades2 = []
+list_of_grades2 = [mean(grades["grades"]) for grades in students]
+
+#for grades in students:
+#    list_of_grades2.append(mean(grades["grades"]))
+    
+print("This is a list of averages: ",list_of_grades2)
+
 # 6. How many pets does each student have?
+
+list_of_pets = []
+
+for i in students:
+    if i["pets"] == []:
+        list_of_pets.append(0)
+    else:
+        list_of_pets.append(i["pets"])
+
+print(list_of_pets)
+
+
+list_of_num_pets = []
+for num in list_of_pets:
+    if num != 0:
+        list_of_num_pets.append(len(num))
+    else:
+        list_of_num_pets.append(0)
+    
+print("\n\nThis is a list of how many pets a student has :",list_of_num_pets)
+
 # 7. How many students are in web development? data science?
+
+what_course = []
+
+for i in students:
+    what_course.append(i["course"])
+
+    
+count = 0
+    
+for i in what_course:
+    if i == "web development":
+        count += 1
+        
+print("There are this many students in web development: ", count)
+
 # 8. What is the average number of pets for students in web development?
+
+#list of all students in web dev
+#web_pets = [i for i in students if i["course"] == "web development"]
+
+web_pets = []
+for i in students:
+    if i["course"] == "web development" and i["pets"] != []:
+        web_pets.append(i)
+            
+print("\n\n",web_pets)
+
+num_web_pets = []
+for i in web_pets:
+    num_web_pets.append(i["pets"])
+    
+list_of_num_pets = []
+for num in num_web_pets:
+    list_of_num_pets.append(len(num))
+    
+print("\n\n", list_of_num_pets)
+print("\n\nThis is the average number for web developments students with pets: ", mean(list_of_num_pets))
+#print("Average number of web development pets: ", (sum(num_web_pets)/len(num_web_pets)) )
+
 # 9. What is the average pet age for students in data science?
+
+data_pets = []
+for i in students:
+    if i["course"] == "web development" and i["pets"] != []:
+        data_pets.append(i)
+
+print(data_pets)
+        
+num_data_pets = []
+for i in data_pets:
+    num_data_pets.append(i["pets"])
+    
+print("\n\n", num_data_pets)
+
+pet_ages = []
+for i in num_data_pets:
+    for k in i:
+        pet_ages.append(k["age"])
+        #print("\n\n",k)
+        #pet_ages.append(k)
+    
+print("\n\n",pet_ages)
+print("\n\nAverage pet age for all students in data science: ",mean(pet_ages))
+
 # 10. What is most frequent coffee preference for data science students?
 # 11. What is the least frequent coffee preference for web development students?
 # 12. What is the average grade for students with at least 2 pets?

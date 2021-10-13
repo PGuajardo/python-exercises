@@ -163,13 +163,27 @@ print("Grand total of balances for all users: ", statistics.mean(grand_balance))
 # --------------------
 
 print(min(grand_balance))
+lowest_balance = min(grand_balance)
 
+for user in JL:
+    if float(nn(user["balance"])) == lowest_balance:
+        lowest_balance_user = user['name']
+
+print(lowest_balance_user)
+    
 #User with the highest balance
 # --------------------
 
-print(max(grand_balance))
 
 
+print("\n", max(grand_balance))
+highest_balance = max(grand_balance)
+
+for user in JL:
+    if float(nn(user["balance"])) == highest_balance:
+        highest_balance_user = user['name']
+
+print(highest_balance_user)
 #Most common favorite fruit
 # --------------------
 
@@ -215,6 +229,7 @@ for takingoutDigit in list_of_unread:
     for split_number in takingoutDigit.split():
         if split_number.isdigit():
             total_of_unread.append(int(split_number))
+
 
 #unread_sum = sum(total_of_unread)
 print("\n")
